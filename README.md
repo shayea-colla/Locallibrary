@@ -1,0 +1,2 @@
+# Locallibrary
+made with Django
