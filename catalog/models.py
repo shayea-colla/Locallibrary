@@ -41,6 +41,11 @@ class Book(models.Model):
         """Return the URL to access the detail record for this book"""
         return reverse("book-detail", args[str(slef.id)])
 
+    def display_genre(self):
+        """ create a string representing the first three genre if any"""
+        return ", ".join(genre.name for genre in self.genre.all()[:3])
+    
+    display_genre.short_description = "Genre"
 
 class BookInstance(models.Model):
 
