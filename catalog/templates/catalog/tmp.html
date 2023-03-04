@@ -1,0 +1,10 @@
+
+{% extends 'catalog/layout.html' %}
+
+{% block title %} catalog index {% endblock %}
+
+{% block body %}
+	{% for t in tmp %}
+		<p>{{ t }}</p>
+	{% endfor %}
+{% endblock %}

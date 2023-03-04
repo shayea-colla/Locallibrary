@@ -39,7 +39,7 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         """Return the URL to access the detail record for this book"""
-        return reverse("book-detail", args[str(slef.id)])
+        return reverse("book-detail", args[str(self.id)])
 
     def display_genre(self):
         """ create a string representing the first three genre if any"""
@@ -80,6 +80,8 @@ class BookInstance(models.Model):
     def __str__(self):
         return f"{self.id} ,({self.book.title})"
 
+    def display_book(self):
+        return self.book.title
 
 class Author(models.Model):
 
@@ -94,9 +96,9 @@ class Author(models.Model):
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
 
-    def get_absolute_path(slef):
+    def get_absolute_path(self):
 
-        return reverse("author-detail", args=[str(slef.id)])
+        return reverse("author-detail", args=[str(self.id)])
 
 
 class Language(models.Model):

@@ -1,7 +1,30 @@
 {% extends 'catalog/layout.html' %}
 
-{% block title %} catalog index {% endblock %}
+{% block title %} <title>Index</title> {% endblock %}
 
-{% block body %}
-	<h1>Index Page</h1>	
+{% block content %}
+	<h1>Local Library Home</h1>
+	<p>Welcom to LocalLibrary, a website forked from <em>Mozilla Developer Network</em>!</p>
+	<h2>Dynamic content</h2>
+	<p> The library has the following record counts:</p>
+
+	<ul>
+		<li><strong>Books: </strong> {{ num_books }} </li>
+		<li><strong>Copies: </strong> {{ num_instances }} </li>
+		<li><strong>Copies available: </strong> {{ num_instance_available }} </li>
+		<li><strong>Authors: </strong> {{ num_authors }} </li>
+		<li><strong>Genre types: </strong>
+			{% for genre in genre_types %}
+				{{ genre }},
+			{% endfor %}
+		</li>
+		
+		<li><strong>Sample books: </strong>
+			{% for book in book_sampls %}
+				{{ book }},
+			{% endfor %}
+		</li>
+		
+	</ul>
+
 {% endblock %}
