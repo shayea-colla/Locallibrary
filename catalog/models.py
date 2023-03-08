@@ -1,5 +1,6 @@
-from django.db import models
 import uuid
+from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Genre(models.Model):
@@ -39,7 +40,7 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         """Return the URL to access the detail record for this book"""
-        return reverse("book-detail", args[str(self.id)])
+        return reverse("book-detail", args=[str(self.id)])
 
     def display_genre(self):
         """ create a string representing the first three genre if any"""
