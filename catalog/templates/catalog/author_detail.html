@@ -1,0 +1,42 @@
+{% extends 'catalog/layout.html' %}
+
+{% block title %} <title>Author</title> {% endblock %}
+{% block style %}
+	.books {
+		margin-left: 20px;
+		margin-top: 20px;
+		}
+	.books .summery {
+		text-rwap: rwap;
+		font-size: large;
+		width: 200px;
+		}
+{% endblock %}
+{% block content %}
+		
+	<h1>Author: {{ author.first_name }} {{ author.last_name }}</h1>
+	<p><strong>Date of birth: </strong> {{ author.date_of_birth }} </p>
+
+	{% if author.date_of_death %}
+		<p><strong>Date of death: </strong> {{ author.date_of_death }} </p>
+	{% endif %}
+	<p><strong>Number of Books: </strong>{{ number_of_book }}</p>
+	<h2> Books </h2>
+	<hr>
+	<div class="books" style="margin-left: 30px; margin-top: 20px;">
+		{% if books %}
+			{% for book in books %}
+
+				<p><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></p>
+				<div> 
+					<p>{{ book.summery }}</p>
+				</div>
+					{% if not foreloop.last %}
+						<hr>
+					{% endif %}
+			{% endfor %}
+		{% else %}
+			<h4>NO WAY HOME SO THE AUTHOR DOESN'T HAVE BOOKS ALONE</h4>
+		{% endif %}
+	</div>
+{% endblock %}

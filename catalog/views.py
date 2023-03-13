@@ -29,15 +29,42 @@ def index(request):
     return render(request, 'catalog/index.html', context=context)
 
 
+def author_list(request):
+    """ get all authors from db"""
+    
+    authors = Author.objects.all()
+    
+    return render(request, 'catalog/author_list.html', {
+        'authors': authors,
+        })
+
+def author_detail(request, pk):
+    author = Author.objects.get(pk=pk)
+    books = Book.objects.filter(author=author.id)
+    number_of_book =  Book.objects.filter(author=author.id).count()
+
+    return render(request, 'catalog/author_detail.html', {
+        'author': author,
+        'books': books,
+        'number_of_book': number_of_book,
+        })
+
+
+
+#class AuthorDetailView(generic.DetailView):
+#    model = Author
+#    self.object          
+
+
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 3 
     context_type = "book_list"
-    # get 5 books the contain 'the' case-insensitive
     queryset = Book.objects.all()
 
 
 
 class BookDetailView(generic.DetailView):
     model = Book
-    
+    paginate_by = 3 
+
+

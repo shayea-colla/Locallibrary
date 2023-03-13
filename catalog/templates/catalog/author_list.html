@@ -1,0 +1,19 @@
+
+{% extends 'catalog/layout.html' %}
+
+{% block title %} <title>Authors</title> {% endblock %}
+
+{% block content %}
+	<h1> Authros list </h1>
+	{% if authors  %}
+		<ul>
+		{% for author in authors %}
+		<li>
+			<a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{ author.last_name }}</a> 
+		</li>
+		{% endfor %}	
+		</ul>
+	{% else %}
+		<h2> NO WAY HOME SO there is no authors here ALONE </h2>
+	{% endif %}
+{% endblock %}
