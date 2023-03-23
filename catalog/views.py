@@ -18,6 +18,10 @@ def index(request):
     genre_types = Genre.objects.all()
 
     book_sampls = Book.objects.all()[:5]
+
+    num_visit = request.session.get('num_visit', 0)
+    request.session['num_visit'] = num_visit + 1;
+
     context = {
             'book_sampls': book_sampls,
             'num_books':num_books,
