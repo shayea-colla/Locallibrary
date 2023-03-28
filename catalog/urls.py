@@ -10,4 +10,7 @@ urlpatterns = [
 
     path("authors/", views.author_list, name="author"),
     path("authors/<int:pk>",views.author_detail, name="author-detail"),
+
+    #Tmp path for testing porpuse
+    path('tmp/', views.tmp, name="tmp"),
 ]

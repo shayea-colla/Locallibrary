@@ -53,7 +53,8 @@ def author_detail(request, pk):
         'number_of_book': number_of_book,
         })
 
-
+def tmp(request):
+    return render(request, 'catalog/tmp.html')
 
 #class AuthorDetailView(generic.DetailView):
 #    model = Author
