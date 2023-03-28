@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -45,10 +46,45 @@
 		</div>
 	    {% endif %}
 	  {% endblock %}
-      <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
+      <div class="col-sm-10 ">{% block content %}
 
+	{% if form.errors %}
+		<p> your username and password didn't match, please try again</p>
+	{% endif %}
+
+
+	{% if next %}
+		
+		{% if user.is_authenticated %}
+			<p>Your account doesn't have access to this page. To proceed, please login with and account that have access</p>
+		{% else %}
+			<p>Please login to this page</p>
+		{% endif %}
+		
+	{% endif %}
+		
+	<form action="{% url 'login' %}" method="post">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td> {{ form.username.label_tag }}</td>
+				<td> {{ form.username }}</td>
+			</tr>
+			<tr>
+				<td> {{ form.password.label_tag }}</td>
+				<td> {{ form.password }}</td>
+			</tr>
+		</table>
+		<input type="submit" value="login">
+		<input type="hidden" value={{ next }} name="next">
+	</form>
+	
+	<p><a href="{% url 'password_reset' %}">reset password</a></p>
+{% endblock %}
+    </div>
     </div>
   </div>
 </body>
 </html>
+
 

@@ -1,3 +1,4 @@
+
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +46,13 @@
 		</div>
 	    {% endif %}
 	  {% endblock %}
-      <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
-
+      <div class="col-sm-10 ">
+	      {% block content %}
+			<p>Logged out!</p>
+			<a href="{% url 'login' %}">login</a>
+		{% endblock %}
+      </div>
+		
     </div>
   </div>
 </body>
